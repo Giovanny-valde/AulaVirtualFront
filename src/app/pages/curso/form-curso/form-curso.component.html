@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="modal-header">
+    <h4 class="modal-title" *ngIf="!curso"> Agregar Curso <i class="fa-solid fa-plus"></i> </h4>
+    <h4 class="modal-title" *ngIf="curso"> Edicion Curso <i class="fa-solid fa-pencil"></i> </h4>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-12">
+          
+          <label class="form-label"> Nombre </label>
+          <input type="text" class="form-control" placeholder="Nombre" formControlName="name">
+
+          <label class="form-label"> Creditos </label>
+          <input type="number" class="form-control" placeholder="Creditos" formControlName="credits">
+
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-secondary" (click)="closeModal()"> Cancelar </button>
+      <button type="submit" class="btn btn-primary" *ngIf="!curso" (click)="operate()" [disabled]="form.invalid">
+        Guardar </button>
+      <button type="submit" class="btn btn-primary" *ngIf="curso" (click)="operate()" [disabled]="form.invalid">
+        Actualizar </button>
+    </div>
+  </form>
+</div>

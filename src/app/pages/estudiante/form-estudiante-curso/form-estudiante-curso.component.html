@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="modal-header">
+    <h4 class="modal-title" > Agregar Curso a Estudiante <i class="fa-solid fa-plus"></i> </h4>
+  </div>
+  <form [formGroup]="form">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-12">
+
+          <label class="form-label"> Cursos </label>
+          <ng-select [items]="cursos" 
+           bindLabel="name" 
+           bindValue="c_id" 
+           formControlName="c_id">
+        </ng-select>
+          <br>
+          <button type="submit" class="btn btn-primary" (click)="operate()" [disabled]="form.invalid">
+            Guardar </button>
+          <br>
+          <hr>
+          <table class="table table-hover table-sm text-center">
+            <thead class="table-dark">
+              <tr>
+                <th> Estdiante </th>
+                <th> Curso </th>
+                <th> Acciones </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cursoEstudiantes ">
+                <td> {{ item.test_students?.first_name }} {{ item.test_students?.last_name }}</td>
+                <td> {{ item.test_courses?.name }} </td>
+                <td>
+                  <i class="fa-solid fa-pencil text-dark me-2" data-bs-toggle="tooltip" data-bs-title="Editar"
+                    (click)="editCursoEstudiante(item)"></i>
+                  <i class="fa-solid fa-trash text-danger" (click)="eliminar(item?.cxs_id)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-secondary" (click)="closeModal()"> Cancelar </button>
+     
+    </div>
+  </form>
+</div>

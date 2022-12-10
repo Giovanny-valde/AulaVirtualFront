@@ -1,0 +1,33 @@
+<div class="container">
+
+  <form>
+    <button class="btn btn-primary col-12 col-sm-5 m-2" (click)="openModal()"> Añadir Curso <i class="fa-solid fa-plus"></i> </button>
+    <div class="mb-3 row">
+      <label class="col-xs-3 col-sm-auto col-form-label"> Buscar : </label>
+      <div class="col-xs-3 col-sm-auto">
+        <input class="form-control" type="text" [formControl]="filter">
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-hover table-sm text-center">
+    <thead class="table-dark">
+      <tr>
+        <th> Nombre </th>
+        <th> Creditos </th>
+        <th> Acciones </th>
+      </tr>
+    </thead>
+    <tBody>
+      <tr *ngFor="let item of cursos$ | async; index as i ">
+        <td> {{ item.name }} </td>
+        <td> {{ item.credits }} </td>
+        <td>
+          <i class="fa-solid fa-pencil text-dark me-2" data-bs-toggle="tooltip" data-bs-title="Editar"
+            (click)="openModal(item)"></i>
+          <i class="fa-solid fa-trash text-danger" (click)="eliminar(item.c_id)"></i>
+        </td>
+      </tr>
+    </tBody>
+  </table>
+</div>
